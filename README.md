@@ -1,4 +1,13 @@
-# Snake-Game-P5js
-Simple Snake Game in P5js library
+# Snake Game with P5.js
+Simple procedural Snake Game in P5.js library
 
-Sometimes the browser may not be able to open the files (because it cannot find the library), so simply copy the sketch.js code and paste it into the P5js Editor and run.
+About the project
+- All procedural (no classes)
+- No images, only P5.js shapes
+- All commented
+- Control using keyboard arrows
+
+## In-Game Image
+<img src="https://github.com/dev-david-alves/Snake-Game-P5js/blob/main/Snake_Game/images/snake_game_01.png?raw=true" alt="Snake Game" style="width: 400px" />
+
+Maybe when cloning you can't see the game, for some reason it only runs using the Live Server plugin, so use whatever text editor you want with the Live Server tool or simply copy the code index.html, sketch.js and style.css and paste them into [P5.js Web Editor](https://editor.p5js.org/) and run it.
