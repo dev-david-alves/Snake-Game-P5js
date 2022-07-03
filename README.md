@@ -11,3 +11,5 @@ About the project
 <img src="https://github.com/dev-david-alves/Snake-Game-P5js/blob/main/Snake_Game/images/snake_game_01.png?raw=true" alt="Snake Game" style="width: 400px" />
 
 Maybe when cloning you can't see the game, for some reason it only runs using the Live Server plugin, so use whatever text editor you want with the Live Server tool or simply copy the code index.html, sketch.js and style.css and paste them into [P5.js Web Editor](https://editor.p5js.org/) and run it.
+
+![p5js](https://img.shields.io/badge/p5.js-ED225D?style=for-the-badge&logo=p5.js&logoColor=FFFFFF)
