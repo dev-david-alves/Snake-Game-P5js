@@ -8,14 +8,17 @@ let snake = {
 };
 
 // definitions
-const scl = 40;
+const scl = 25;
 let cols = 0;
 let rows = 0;
 let food = {};
 let points = 0;
 
+// flag
+let keyIsPressed = false;
+
 function setup() {
-  createCanvas(600, 600);
+  createCanvas(450, 450);
 
   // set the number of columns and rows
   cols = width / scl;
@@ -34,18 +37,22 @@ function setup() {
 
 function keyPressed() {
   // change direction of snake
-  if (keyCode === LEFT_ARROW && snake.xv != 1) {
+  if (keyCode === LEFT_ARROW && snake.xv != 1 && !keyIsPressed) {
     snake.xv = -1;
     snake.yv = 0;
-  } else if (keyCode === RIGHT_ARROW && snake.xv != -1) {
+    keyIsPressed = true;
+  } else if (keyCode === RIGHT_ARROW && snake.xv != -1 && !keyIsPressed) {
     snake.xv = 1;
     snake.yv = 0;
-  } else if (keyCode === UP_ARROW && snake.yv != 1) {
+    keyIsPressed = true;
+  } else if (keyCode === UP_ARROW && snake.yv != 1 && !keyIsPressed) {
     snake.xv = 0;
     snake.yv = -1;
-  } else if (keyCode === DOWN_ARROW && snake.yv != -1) {
+    keyIsPressed = true;
+  } else if (keyCode === DOWN_ARROW && snake.yv != -1 && !keyIsPressed) {
     snake.xv = 0;
     snake.yv = 1;
+    keyIsPressed = true;
   }
 }
 
@@ -60,25 +67,23 @@ function createFood() {
 function draw() {
   background(0);
 
-  // draw text
-  textSize(scl);
-  fill(255);
-  text(points, scl, scl);
-
   // draw food
   fill(255, 0, 0);
   stroke(255);
   rect(food.x * scl, food.y * scl, scl, scl);
 
-  // draw snake head
-  fill(0, 0, 255);
-  rect(snake.x * scl, snake.y * scl, scl, scl);
-
   // check if snake has eaten food
   if (snake.x == food.x && snake.y == food.y) {
     points++;
     food = createFood();
-    snake.tail.push({ x: snake.x, y: snake.y });
+    let tailLength = snake.tail.length;
+    let lastSpot = snake.tail[tailLength - 1];
+
+    if(tailLength == 0) {
+      snake.tail.push({x: snake.x, y: snake.y});
+    } else {
+      snake.tail.push({x: lastSpot.x, y: lastSpot.y});
+    }
   }
 
   // check if snake has tail
@@ -99,6 +104,10 @@ function draw() {
     snake.tail[0].y = snake.y;
   }
 
+  // draw snake head
+  fill(0, 0, 255);
+  rect(snake.x * scl, snake.y * scl, scl, scl);
+
   // update snake head position
   snake.x += snake.xv;
   snake.y += snake.yv;
@@ -110,6 +119,14 @@ function draw() {
       noLoop();
     }
   }
+
+  // prevent quick button presses
+  keyIsPressed = false;
+
+  // draw text
+  textSize(scl);
+  fill(255);
+  text(points, scl, scl * 1.3);
 
   // check if snake has hit the wall
   if (snake.x < 0) {
